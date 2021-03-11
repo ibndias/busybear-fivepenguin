@@ -35,8 +35,11 @@ cmd="${QEMU_SYSTEM_BIN} -nographic -machine virt \
 	-append \"root=/dev/vda ro console=ttyS0\" \
 	-drive file=busybear.bin,format=raw,id=hd0 \
 	-device virtio-blk-device,drive=hd0 \
-	-netdev ${QEMU_NETDEV},id=net0 \
-	-device virtio-net-device,netdev=net0"
+  -device virtio-net-device,netdev=usernet \
+  -netdev user,id=usernet,hostfwd=tcp::10000-:22"
+# use qemu network emulation instead of bridging
+#	-netdev ${QEMU_NETDEV},id=net0 \
+#	-device virtio-net-device,netdev=net0"
 
 # print or execute command
 if [ "${NOEXEC}" = "true" ] ; then

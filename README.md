@@ -131,7 +131,7 @@ and virtio-net devices.
 The following command starts busybear-linux:
 
 ```
-./scripts/run-qemu.sh
+./scripts/start-qemu.sh
 ```
 
 which runs executes this command:
@@ -175,6 +175,13 @@ Note: the disk image is stateful and needs to be shutdown cleanly.
 ```
 root@ucbvax:~# halt
 ```
+## QEMU Networking Emulation
+
+This repo is modified from original to be able to use QEMU Networking Emulation (see `/etc/network/interfaces` file), modifying the host using `ifup.sh` and `ifdown.sh` is not needed.
+
+Just run ssh using:
+
+`$ ssh root@localhost -p10000`
 
 ## linux bridged networking
 
