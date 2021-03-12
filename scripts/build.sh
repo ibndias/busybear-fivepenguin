@@ -49,6 +49,7 @@ test -d build/dropbear-${DROPBEAR_VERSION} || \
 test -d build/linux-${LINUX_KERNEL_VERSION} || \
     tar -C build -xzf archives/linux-${LINUX_KERNEL_VERSION}.tar.gz
 
+git submodule update --remote
 #
 # set default configurations
 #
