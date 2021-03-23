@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -e
+set -ex
 
 . conf/busybear.config
 
@@ -60,6 +60,10 @@ copy_libs() {
         mkdir -p mnt/${dir}
     done
 
+    #derry copy hello
+    cp hello mnt/bin/
+    mkdir mnt/bin/beebs
+    cp ../riscv-benchmark/results/* mnt/bin/beebs
     # copy busybox and dropbear
     cp build/busybox-${BUSYBOX_VERSION}/busybox mnt/bin/
     cp build/dropbear-${DROPBEAR_VERSION}/dropbear mnt/sbin/

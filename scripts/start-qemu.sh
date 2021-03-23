@@ -23,7 +23,9 @@ done
 QEMU_NETDEV="type=tap,script=./scripts/ifup.sh,downscript=./scripts/ifdown.sh"
 
 # locate QEMU
-QEMU_SYSTEM_BIN=$(which qemu-system-${ARCH})
+#QEMU_SYSTEM_BIN=$(which qemu-system-${ARCH})
+#QEMU_SYSTEM_BIN="../riscv-mte/install/bin/qemu-system-riscv64"
+QEMU_SYSTEM_BIN="qemu-system-riscv64"
 if [ -z ${QEMU_SYSTEM_BIN} ]; then
   echo "Cannot locate qemu-system-${ARCH}"
   exit 1
@@ -31,7 +33,7 @@ fi
 
 # construct command
 cmd="${QEMU_SYSTEM_BIN} -nographic -machine virt \
-	-kernel build/riscv-pk/bbl \
+  -kernel build/riscv-pk/bbl -s -S \
 	-append \"root=/dev/vda ro console=ttyS0\" \
 	-drive file=busybear.bin,format=raw,id=hd0 \
 	-device virtio-blk-device,drive=hd0 \

@@ -1,4 +1,6 @@
 #!/bin/sh
+hello
+#echo $?
 /bin/busybox mount -t proc proc /proc
 /bin/busybox mount -t sysfs sysfs /sys
 /bin/busybox mount -o remount,rw /
