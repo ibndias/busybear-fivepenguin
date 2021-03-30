@@ -1,6 +1,8 @@
 #!/bin/sh
+#/bin/beebs/qurt.elf
 hello
 #echo $?
+
 /bin/busybox mount -t proc proc /proc
 /bin/busybox mount -t sysfs sysfs /sys
 /bin/busybox mount -o remount,rw /
