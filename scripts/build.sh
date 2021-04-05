@@ -17,6 +17,7 @@ done
 #
 # find executables
 #
+export PATH="$HOME/Documents/Project/riscv-gnu-toolchain/install/bin:$PATH"
 for prog in ${CROSS_COMPILE}gcc sudo nproc curl openssl rsync; do
     if [ -z $(which ${prog}) ]; then
         echo "error: ${prog} not found in PATH" && exit 1

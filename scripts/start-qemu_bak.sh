@@ -2,6 +2,26 @@
 
 . conf/busybear.config
 
+while [[ $# -gt 0 ]] && [[ ."$1" = .--* ]] ;
+do
+  opt="$1"
+  shift
+  case "${opt}" in
+    "--" )
+      break 2
+      ;;
+    "--no-exec" )
+      NOEXEC=true
+      ;;
+    *)
+      echo >&2 "$0: unknown option: ${opt}";
+      exit 1
+      ;;
+  esac
+done
+
+#QEMU_NETDEV="type=tap,script=./scripts/ifup.sh,downscript=./scripts/ifdown.sh"
+
 # locate QEMU
 #QEMU_SYSTEM_BIN=$(which qemu-system-${ARCH})
 QEMU_SYSTEM_BIN="../riscv-mte/install/bin/qemu-system-riscv64"
@@ -20,7 +40,7 @@ set -x
 # construct command
 cmd="${QEMU_SYSTEM_BIN} -nographic -machine virt \
   -kernel build/riscv-pk/bbl -s -S \
-	-append \"root=/dev/vda ro console=ttyS0 nokaslr init=/bin/beebs/$filename memmap=1G@2G debug_boot_weak_hash \" \
+	-append \"root=/dev/vda ro console=ttyS0 nokaslr init=/bin/beebs/aha-compress.elf memmap=1G@2G debug_boot_weak_hash \" \
 	-drive file=busybear.bin,format=raw,id=hd0 \
   -m 3G \
 	-device virtio-blk-device,drive=hd0 \
@@ -33,7 +53,7 @@ cmd="${QEMU_SYSTEM_BIN} -nographic -machine virt \
 
 # print or execute command
 if [ "${NOEXEC}" = "true" ] ; then
-  echo ${cmd}
+  echo ${cmd} $*
 else
-  eval "exec ${cmd}"
+  eval "exec sudo ${cmd} $*"
 fi
