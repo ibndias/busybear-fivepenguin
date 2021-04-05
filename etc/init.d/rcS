@@ -1,6 +1,6 @@
 #!/bin/sh
 #/bin/beebs/qurt.elf
-hello
+#hello
 #echo $?
 
 /bin/busybox mount -t proc proc /proc
