@@ -1,0 +1,2 @@
+*elf-hist.txt filter=lfs diff=lfs merge=lfs -text
+*elf-log.txt filter=lfs diff=lfs merge=lfs -text

@@ -24,5 +24,7 @@ void derry() {
     //sleep(999999999);
 }
 int main() {
+    /* writing to 0x8c3 csr makes qemu to exit */
+    asm("csrw 0x8c3, a0");
     derry();
 }

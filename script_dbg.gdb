@@ -10,10 +10,11 @@ set confirm off
 #or
 # clang -g -O0 -static hello.c -o hello -march=rv64g
 
-file ./hello
-b derry
+#file ./hello
+#b derry
 #file ../riscv-benchmark/results/qurt.elf
-#b start_trigger
+b start_trigger
+b main
 layout regs
 c
 set logging overwrite on
