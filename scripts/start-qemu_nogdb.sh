@@ -5,7 +5,6 @@
 # locate QEMU
 #QEMU_SYSTEM_BIN=$(which qemu-system-${ARCH})
 QEMU_SYSTEM_BIN="../riscv-mte/install/bin/qemu-system-riscv64"
-
 #QEMU_SYSTEM_BIN="qemu-system-riscv64"
 if [ -z ${QEMU_SYSTEM_BIN} ]; then
   echo "Cannot locate qemu-system-${ARCH}"
@@ -20,7 +19,7 @@ set -x
 #memmap=512M$2G
 # construct command
 cmd="${QEMU_SYSTEM_BIN} -nographic  -machine virt \
-  -kernel build/riscv-pk/bbl -s -S -no-reboot \
+  -kernel build/riscv-pk/bbl -no-reboot \
 	-append \"panic=-1 root=/dev/vda ro console=ttyS0 nokaslr  init=/bin/beebs/$filename memmap=1G@2G debug_boot_weak_hash \" \
 	-drive file=busybear.bin,format=raw,id=hd0 \
   -m 3G \
