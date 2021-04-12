@@ -1,2 +1,6 @@
 *elf-hist.txt filter=lfs diff=lfs merge=lfs -text
 *elf-log.txt filter=lfs diff=lfs merge=lfs -text
+result/** filter=lfs diff=lfs merge=lfs -text
+result-base-clang/** filter=lfs diff=lfs merge=lfs -text
+result-base-gcc/** filter=lfs diff=lfs merge=lfs -text
+result-mte/** filter=lfs diff=lfs merge=lfs -text
